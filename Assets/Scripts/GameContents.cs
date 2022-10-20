@@ -25,5 +25,12 @@ namespace TKOU.SimAI
         }
 
         #endif
+        public void Initiate()
+        {
+            foreach (var buildingData in buildings)
+            {
+                buildingData.BuildingCost = Random.Range(50, 151);
+            }
+        }
     }
 }

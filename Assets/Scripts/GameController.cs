@@ -100,6 +100,7 @@ namespace TKOU.SimAI
 
             GameCamera.SetBounds(levelController.generationConfig.levelMinPosition, levelController.generationConfig.levelMaxPosition);
             Player.Initialize(GameCamera);
+            Contents.Initiate();
 
             IsGameRunning = true;
 

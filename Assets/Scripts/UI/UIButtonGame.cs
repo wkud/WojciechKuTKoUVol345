@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TKOU.SimAI.Levels;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -21,11 +22,15 @@ namespace TKOU.SimAI
 
         [SerializeField]
         private TextMeshProUGUI nameText;
+        
+        [SerializeField]
+        private TextMeshProUGUI priceText;
 
         [SerializeField]
         private Image iconImage;
 
         private const string nullDataName = "Empty";
+        private const string nullDataPrice = "0";
         private const Sprite nullDataSprite = null;
 
         #endregion Variables
@@ -63,14 +68,17 @@ namespace TKOU.SimAI
             if(Data != null)
             {
                 nameText.text = Data.DataName;
+                priceText.text = (Data as BuildingData)?.BuildingCost.ToString() ?? string.Empty;
                 iconImage.sprite = Data.DataIcon;
 
                 nameText.gameObject.SetActive(string.IsNullOrEmpty(nameText.text) == false);
+                priceText.gameObject.SetActive(string.IsNullOrEmpty(priceText.text) == false);
                 iconImage.gameObject.SetActive(iconImage.sprite != null);
             }
             else
             {
                 nameText.text = nullDataName;
+                nameText.text = nullDataPrice;
                 iconImage.sprite = nullDataSprite;
 
                 nameText.gameObject.SetActive(true);
