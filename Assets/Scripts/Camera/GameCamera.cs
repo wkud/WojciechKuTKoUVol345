@@ -14,6 +14,7 @@ namespace TKOU.SimAI.Camera
         private UnityEngine.Camera camera;
         private Transform cameraTarget;
         private Transform cameraTransform;
+        private const float cameraSpeed = 5;
 
         [Header("Zoom")]
         private float minZoomValue = 10;
@@ -48,7 +49,7 @@ namespace TKOU.SimAI.Camera
 
         public void MoveBy(Vector2 delta)
         {
-            Vector3 delta3D = new Vector3(delta.x, 0.0f, delta.y);
+            Vector3 delta3D = new Vector3(delta.x, 0.0f, delta.y) * cameraSpeed;
             Vector3 rotation = cameraTransform.eulerAngles;
             rotation.x = 0.0f;
             rotation.z = 0.0f;
