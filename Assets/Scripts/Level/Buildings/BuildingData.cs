@@ -17,6 +17,8 @@ namespace TKOU.SimAI.Levels
         [field:SerializeField]
         public string BuildingName { get; private set; }
 
+        public int BuildingCost { get; set; } 
+        
         Sprite IAmData.DataIcon => BuildingSprite;
 
         string IAmData.DataName => BuildingName;
