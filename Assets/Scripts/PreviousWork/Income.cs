@@ -21,5 +21,5 @@ public class Income : MonoBehaviour
         
     }
 
-    public int Cash { get; set; }
+    public int Cash { get; set; } // declare properties before methods
 }
