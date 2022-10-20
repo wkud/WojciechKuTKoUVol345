@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TKOU.SimAI.Highlights;
 using TKOU.SimAI.Levels;
+using TKOU.SimAI.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,7 +20,7 @@ namespace TKOU.SimAI
         private IAmEntity selectedEntity;
         private IAmEntity hoveredEntity;
         private IAmEntity underCursorEntity;
-
+        
         private bool isContextPressed = false;
 
         private const float moveScale = 0.04f;
@@ -37,6 +38,9 @@ namespace TKOU.SimAI
         [SerializeField]
         private UIBuildingController uiBuildingController;
 
+        [SerializeField]
+        private UICashController uiCashController;
+        
         public event System.Action<IAmEntity> OnHoverEntityE;
         public event System.Action<IAmEntity> OnSelectEntityE;
 
@@ -64,7 +68,7 @@ namespace TKOU.SimAI
             typeToSelectionHandler.Add(typeof(TileEntity), OnSelectEntity_TileEntity);
             typeToSelectionHandler.Add(typeof(BuildingEntity), OnSelectEntity_BuildingEntity);
 
-            buildHandler = new BuildHandler();
+            buildHandler = new BuildHandler(uiCashController);
         }
 
         private void OnDestroy()

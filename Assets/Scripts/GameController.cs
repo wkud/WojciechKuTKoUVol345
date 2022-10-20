@@ -121,6 +121,11 @@ namespace TKOU.SimAI
             OnGameEnd?.Invoke();
         }
 
+        public void OnRestart()
+        {
+            Debug.Log("This button doesn't do anything yet.");
+        }
+        
         #endregion Public methods
     }
 }
