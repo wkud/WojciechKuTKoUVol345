@@ -72,6 +72,10 @@ namespace TKOU.SimAI
             {
                 RunGame();
             }
+            else
+            {
+                Player.Initialize(GameCamera);
+            }
         }
 
         #endregion Unity methods
