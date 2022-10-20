@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TKOU.SimAI.Levels;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace TKOU.SimAI
 {
@@ -10,6 +11,8 @@ namespace TKOU.SimAI
     /// </summary>
     public class BuildHandler: IHaveBuildSelection
     {
+        private readonly ICashController cashController;
+        
         private IAmData buildSelection;
 
         private GameObject ghostGameObject;
@@ -56,6 +59,11 @@ namespace TKOU.SimAI
             }
         }
 
+        public BuildHandler(ICashController cashController)
+        {
+            this.cashController = cashController;
+        }
+        
         public void AttemptToBuildSelection()
         {
             if(ghostGameObject == null)
@@ -69,12 +77,14 @@ namespace TKOU.SimAI
             }
 
             if(BuildSelection is BuildingData buildingData 
-                && BuildTarget is TileEntity tileEntity)
+                && BuildTarget is TileEntity tileEntity
+                && cashController.CanAfford(buildingData.BuildingCost))
             {
                 Building building = new Building(buildingData, tileEntity.Tile);
                 tileEntity.Tile.AddObject(building);
                 BuildingEntity.SpawnEntity(building);
-
+                cashController.NotifyOnBuildingBuilt(buildingData.BuildingCost);
+                
                 BuildSelection = null;
             }
         }
